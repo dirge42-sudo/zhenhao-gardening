@@ -1,0 +1,45 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "images/uploads"
+
+publish_mode: simple
+
+collections:
+  - name: "portfolio"
+    label: "作品集"
+    files:
+      - file: "content/portfolio.json"
+        label: "作品集列表"
+        name: "portfolio"
+        fields:
+          - label: "作品項目"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.category}} - {{fields.caption}}"
+            fields:
+              - { label: "照片", name: "image", widget: "image", required: false }
+              - label: "分類"
+                name: "category"
+                widget: "select"
+                options: ["樹木整理", "陽台造景"]
+              - { label: "說明文字", name: "caption", widget: "string" }
+
+  - name: "bonsai"
+    label: "盆景販賣"
+    files:
+      - file: "content/bonsai.json"
+        label: "盆景商品列表"
+        name: "bonsai"
+        fields:
+          - label: "商品項目"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} - {{fields.price}}"
+            fields:
+              - { label: "照片", name: "image", widget: "image", required: false }
+              - { label: "名稱", name: "name", widget: "string" }
+              - { label: "價格", name: "price", widget: "string", hint: "例如：$1,800 起" }
+              - { label: "說明", name: "description", widget: "text" }
